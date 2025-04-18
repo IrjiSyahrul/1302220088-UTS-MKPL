@@ -8,7 +8,6 @@ import java.util.List;
 public class Employee {
 
 	
-	private String idNumber;
 	
 	private int yearJoined;
 	private int monthJoined;
@@ -24,8 +23,7 @@ public class Employee {
 	private List<String> childNames;
 	private List<String> childIdNumbers;
 	
-	public Employee( String idNumber, int yearJoined, int monthJoined, boolean isForeigner) {
-		this.idNumber = idNumber;
+	public Employee( int yearJoined, int monthJoined, boolean isForeigner) {
 		this.yearJoined = yearJoined;
 		this.monthJoined = monthJoined;
 		this.isForeigner = isForeigner;
@@ -66,9 +64,8 @@ public class Employee {
 		this.otherMonthlyIncome = income;
 	}
 	
-	public void setSpouse(String spouseName, String spouseIdNumber) {
-		// this.spouseName = spouseName;
-		this.spouseIdNumber = idNumber;
+	public void setSpouse( String spouseIdNumber) {
+		this.spouseIdNumber = spouseIdNumber;
 	}
 	
 	public void addChild(String childName, String childIdNumber) {
