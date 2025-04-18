@@ -1,7 +1,6 @@
 package lib;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -77,14 +76,19 @@ public class Employee {
 	public int getAnnualIncomeTax() {
 		
 		//Menghitung berapa lama pegawai bekerja dalam setahun ini, jika pegawai sudah bekerja dari tahun sebelumnya maka otomatis dianggap 12 bulan.
-		LocalDate date = LocalDate.now();
-		
-		if (date.getYear() == yearJoined) {
-			monthWorkingInYear = date.getMonthValue() - monthJoined;
-		}else {
-			monthWorkingInYear = 12;
-		}
-		
+		calculateMonthsWorked();
+
 		return TaxFunction.calculateTax(monthlySalary, otherMonthlyIncome, monthWorkingInYear, annualDeductible, spouseIdNumber.equals(""), childIdNumbers.size());
 	}
+
+		//Memisah logika getAnnualIncomeTax dengan menambah fungsi baru untuk menghitung berapa lama pegawai bekerja dalam setahun dengan tipe private karena fungsi hanya digunakan secara lokal untuk menghitung berapa lama pegawai bekerja dalam setahun.
+	private void calculateMonthsWorked() {
+        LocalDate currentDate = LocalDate.now();
+
+        if (currentDate.getYear() == yearJoined) {
+            monthWorkingInYear = currentDate.getMonthValue() - monthJoined;
+        } else {
+            monthWorkingInYear = 12; 
+        }
+    }
 }
